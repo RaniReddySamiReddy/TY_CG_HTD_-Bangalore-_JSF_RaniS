@@ -1,0 +1,1 @@
+SQL> spool "C:\Users\Admin\Desktop\SQL\cg1.txt" append

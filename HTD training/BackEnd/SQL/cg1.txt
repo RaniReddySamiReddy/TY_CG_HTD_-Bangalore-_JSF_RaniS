@@ -1,0 +1,254 @@
+SQL> select ENAME,JOB FROM EMP;
+
+ENAME      JOB                                                                                                          
+---------- ---------                                                                                                    
+SMITH      CLERK                                                                                                        
+ALLEN      SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST                                                                                                      
+KING       PRESIDENT                                                                                                    
+TURNER     SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES      CLERK                                                                                                        
+FORD       ANALYST                                                                                                      
+MILLER     CLERK                                                                                                        
+
+14 rows selected.
+
+SQL> SELECT EMPNO,ENAME FROM EMP;
+
+     EMPNO ENAME                                                                                                        
+---------- ----------                                                                                                   
+      7369 SMITH                                                                                                        
+      7499 ALLEN                                                                                                        
+      7521 WARD                                                                                                         
+      7566 JONES                                                                                                        
+      7654 MARTIN                                                                                                       
+      7698 BLAKE                                                                                                        
+      7782 CLARK                                                                                                        
+      7788 SCOTT                                                                                                        
+      7839 KING                                                                                                         
+      7844 TURNER                                                                                                       
+      7876 ADAMS                                                                                                        
+      7900 JAMES                                                                                                        
+      7902 FORD                                                                                                         
+      7934 MILLER                                                                                                       
+
+14 rows selected.
+
+SQL> SELECT SAL*(15/100) S1, ENAME FROM EMP;
+
+        S1 ENAME                                                                                                        
+---------- ----------                                                                                                   
+       120 SMITH                                                                                                        
+       240 ALLEN                                                                                                        
+     187.5 WARD                                                                                                         
+    446.25 JONES                                                                                                        
+     187.5 MARTIN                                                                                                       
+     427.5 BLAKE                                                                                                        
+     367.5 CLARK                                                                                                        
+       450 SCOTT                                                                                                        
+       750 KING                                                                                                         
+       225 TURNER                                                                                                       
+       165 ADAMS                                                                                                        
+     142.5 JAMES                                                                                                        
+       450 FORD                                                                                                         
+       195 MILLER                                                                                                       
+
+14 rows selected.
+
+SQL> SELECT DISTINCT SAL FROM EMP;
+
+       SAL                                                                                                              
+----------                                                                                                              
+      2450                                                                                                              
+      5000                                                                                                              
+      1300                                                                                                              
+      1250                                                                                                              
+      2850                                                                                                              
+      2975                                                                                                              
+      1100                                                                                                              
+      3000                                                                                                              
+       800                                                                                                              
+      1600                                                                                                              
+      1500                                                                                                              
+       950                                                                                                              
+
+12 rows selected.
+
+SQL> SELECT DISTINCT ENAME FROM EMP;
+
+ENAME                                                                                                                   
+----------                                                                                                              
+ALLEN                                                                                                                   
+JONES                                                                                                                   
+FORD                                                                                                                    
+CLARK                                                                                                                   
+MILLER                                                                                                                  
+SMITH                                                                                                                   
+WARD                                                                                                                    
+MARTIN                                                                                                                  
+SCOTT                                                                                                                   
+TURNER                                                                                                                  
+ADAMS                                                                                                                   
+BLAKE                                                                                                                   
+KING                                                                                                                    
+JAMES                                                                                                                   
+
+14 rows selected.
+
+SQL> SELECT DISTINCT DEPTNO FROM EMP;
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        30                                                                                                              
+        20                                                                                                              
+        10                                                                                                              
+
+SQL> SELECT DISTINCT MGR FROM EMP;
+
+       MGR                                                                                                              
+----------                                                                                                              
+      7839                                                                                                              
+                                                                                                                        
+      7782                                                                                                              
+      7698                                                                                                              
+      7902                                                                                                              
+      7566                                                                                                              
+      7788                                                                                                              
+
+7 rows selected.
+
+SQL> select ENAME
+  2  FROM EMP
+  3  WHERE DEPTNO 10;
+WHERE DEPTNO 10
+             *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE DEPTNO=10;
+
+ENAME                                                                                                                   
+----------                                                                                                              
+CLARK                                                                                                                   
+KING                                                                                                                    
+MILLER                                                                                                                  
+
+SQL> SELECT DEPTNO,MAX(SAL),AVG(SAL)
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING MAX(SAL) > AVG(SAL);
+
+    DEPTNO   MAX(SAL)   AVG(SAL)                                                                                        
+---------- ---------- ----------                                                                                        
+        30       2850 1566.66667                                                                                        
+        20       3000       2175                                                                                        
+        10       5000 2916.66667                                                                                        
+
+SQL> SELECT DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING COUNT(*)>3
+  5  ;
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        30                                                                                                              
+        20                                                                                                              
+
+SQL> select * FROM EMP
+  2  WHERE SAL>(SELECT SAL
+  3            FROM EMP
+  4            WHERE ENAME='SCOTT');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                   
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * FROM EMP
+  2  WHERE SAL>=(SELECT SAL
+  3            FROM EMP
+  4*           WHERE ENAME='SCOTT')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                   
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DNAME
+  2  FROM DEPT
+  3  WHERE DEPTNO=(SELECT * FROM EMP
+  4  WHERE SAL>(SELECT SAL
+  5            FROM EMP
+  6*           WHERE ENAME='SCOTT')
+SQL> /
+WHERE DEPTNO=(SELECT * FROM EMP
+              *
+ERROR at line 3:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DNAME
+  2  FROM DEPT
+  3  WHERE DEPTNO=(SELECT * FROM EMP
+  4  WHERE SAL>(SELECT SAL
+  5            FROM EMP
+  6*           WHERE ENAME='SCOTT'))
+SQL> /
+WHERE DEPTNO=(SELECT * FROM EMP
+              *
+ERROR at line 3:
+ORA-00913: too many values 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DNAME
+  2  FROM DEPT
+  3  WHERE DEPTNO=(SELECT  DEPTNO
+  4  FROM EMP
+  5  WHERE SAL>(SELECT SAL
+  6            FROM EMP
+  7*           WHERE ENAME='SCOTT'))
+SQL> /
+
+DNAME                                                                                                                   
+--------------                                                                                                          
+ACCOUNTING                                                                                                              
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL)
+  2  FROM EMP
+  3  WHERE SAL < (SELECT MAX(SAL)
+  4            FROM EMP
+  5            WHERE SAL<(SELECT MAX(SAL)
+  6*                              FROM EMP))
+SQL> /
+
+  MAX(SAL)                                                                                                              
+----------                                                                                                              
+      2975                                                                                                              
+
+SQL> SPOOL OFF;

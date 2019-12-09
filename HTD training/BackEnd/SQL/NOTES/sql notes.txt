@@ -1,0 +1,68 @@
+ORDER BY CLAUSE(Ascending order / Descending order):-
+orderbyclause should written after select statement.
+it will arrange the things into sorted order  without having any duplicates.
+----------------------------------------------------------------------------------------------------------
+PROJECTION:-
+SELECT */[DISTINCT]COLUMN_NM/EXPRESSION[ALIAS]
+FROM TABLE_NM
+----------------------------------------------------------------------------------------------------------
+SELECTION:-
+
+SELECT*/[DISTINCT]COLUMN_NM/EXPRESSION[ALIAS]
+FROM TABLE_NM
+WHERE TABLE_NM
+WHERE<FILTER CONDITION>
+
+
+*ORDER OF & NATURE EXECUTION
+1.FROM
+2. WHERE
+3. SELECT
+-------------------------------------------------------------------------------------------------------------
+GROUP BY:-
+
+SELECT */[DISTINCT] COLUMN_NM/ EXPRESSION [ALIAS]
+FROM TABLE-NM
+[WHERE<FILTER CONDITION> ]
+GROUP BY COLUMN_NM
+
+
+*ORDER & NATURE OF EXECUTION
+1.FROM
+2.WHERE { IF ANY }
+3.GROUP BY
+4.SELECT
+----------------------------------------------------------------------------------------------------------------
+HAVING CLAUSE:-
+
+SELECT */[DISTINCT] COLUMN_NM/EXPRESSION[ALIAS]
+FROM TABLE_NM
+[WHERE<FILTER CONDITION> ]
+[GROUP BY COLUMN_NM]
+[HAVING <GROUP FILTER CONDITION>]
+ORDER BY COLUMN_NM
+
+*ORDER & NATURE OF EXECUTION
+1.FROM
+2.WHERE { IF ANY } => ROW BY ROW
+3.GROUP BY => ROW BY ROW
+4.HAVING => ROW BY ROW
+5.SELECT => ROW BY ROW
+---------------------------------------------------------------------------------------------------------------------
+SUBQUERY   "Y"?
+if there are some "unknowns" present inside the query then we go  subquery..........
+
+
+INNER QUERY  (OUTPUT)----------------->OUTER QUERY (INPUT)====>[result]
+Inner query op is always ip for outer query.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+SEVENTH MAX SALARY:-
+
+WITH FMAX AS (SELECT MAX(SAL) FMAXSAL FROM EMP);
+           SMAX AS (SELECT MAX(SAL) SMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM FMAX)),
+           TMAX AS (SELECT MAX(SAL) TMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM SMAX)),
+           FMAX AS (SELECT MAX(SAL) FMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM TMAX)),
+           FIMAX AS (SELECT MAX(SAL) FIMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM FMAX)),
+           SIMAX AS (SELECT MAX(SAL) SMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM FIMAX)),
+           SEMAX AS (SELECT MAX(SAL) SMAXSAL FROM EMP WHERE SAL < ( SELECT * FROM SIMAX)),
+---------------------------------------------------------------------------------------------------------------------------------------------------------
