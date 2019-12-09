@@ -1,0 +1,29 @@
+.t ul li {
+    list-style: none;
+    display: inline;
+    float:left;
+      
+}
+
+.k ul li
+{
+    list-style: none;
+    display: inline;  
+    float:right;
+}
+a{
+    text-decoration: none;
+    padding: 20px;
+    font-size: 20px;
+}
+table{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border:3px solid black;
+}
+body{
+    background-image: url('./background.jpg');
+    background-size: cover;
+
+}
+

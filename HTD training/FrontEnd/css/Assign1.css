@@ -1,0 +1,27 @@
+ul li {
+    list-style: none;
+    display: inline;
+    float:left;
+}
+
+a{
+    text-decoration: none;
+    padding: 20px;
+    font-size: 20px;
+}
+.bj ul li
+{
+    list-style: none;
+    display: inline;  
+    float:right;
+}
+img{
+    padding: 10px;
+    border-radius: 50%;
+    border:2px solid red;
+    margin:10px;
+    box-shadow:0 0 10px red;
+}
+.r {
+    padding: 30px;
+}

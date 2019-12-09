@@ -1,0 +1,9 @@
+img
+{
+   border: 1px solid yellow;
+   box-shadow:0 0 4px chartreuse;
+}
+.one, .two
+{
+    text-shadow: 4px 2px brown;
+}

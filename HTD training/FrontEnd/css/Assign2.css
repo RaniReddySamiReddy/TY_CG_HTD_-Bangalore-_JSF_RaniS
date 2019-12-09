@@ -1,0 +1,30 @@
+ul li {
+    list-style: none;
+    display: inline;
+    float:left;
+}
+
+a{
+    text-decoration: none;
+    padding: 20px;
+    font-size: 20px;
+}
+.k ul li
+{
+    list-style: none;
+    display: inline;  
+    float:right;
+}
+.r
+{
+    font-size: 30px;
+    padding:100px;
+
+}
+body{
+    background-image: url('./backgrd.jpg');
+    background-size: cover;
+}
+table{
+    border:3px solid rgb(245, 139, 126);
+}
